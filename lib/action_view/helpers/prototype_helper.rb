@@ -95,6 +95,11 @@ module ActionView
     # See JavaScriptGenerator for information on updating multiple elements
     # on the page in an Ajax response.
     module PrototypeHelper
+
+      unless const_defined? :JQUERY_VAR
+        JQUERY_VAR = 'jQuery'
+      end
+
       CALLBACKS = Set.new([ :beforeSend, :complete, :error, :success ] + (100..599).to_a)
       AJAX_OPTIONS = Set.new([ :before, :after, :condition, :url,
                          :asynchronous, :method, :insertion, :position,
@@ -753,6 +758,11 @@ module ActionView
     end
 
     class JavaScriptElementProxy < JavaScriptProxy #:nodoc:
+
+      unless const_defined? :JQUERY_VAR
+        JQUERY_VAR = PrototypeHelper::JQUERY_VAR
+      end
+
       def initialize(generator, id)
         @id = id
         super(generator, "#{JQUERY_VAR}(\"#{id}\")")
@@ -911,6 +921,10 @@ module ActionView
     end
 
     class JavaScriptElementCollectionProxy < JavaScriptCollectionProxy #:nodoc:\
+      unless const_defined? :JQUERY_VAR
+        JQUERY_VAR = PrototypeHelper::JQUERY_VAR
+      end
+
       def initialize(generator, pattern)
         super(generator, "#{JQUERY_VAR}(#{::ActiveSupport::JSON.encode(pattern)})")
       end
