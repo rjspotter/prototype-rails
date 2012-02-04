@@ -1,20 +1,5 @@
-prototype-rails provides Prototype, Scriptaculous, and RJS for Rails 3.1.
+= Do Not Use !
 
-Prototype and Scriptaculous are provided via the asset pipeline and you
-do *not* need to copy their files into your application. Rails will get
-them from prototype-rails automatically.
+This is a bastard child of prototype-rails and jrails to *temporarily* support upgrading to Rails 3.2 while still using jQuery based rjs templates.  
 
-You may want to add them to your app/assets/javascripts/application.js:
-
-    //= require prototype
-    //= require prototype_ujs
-    //= require effects
-    //= require dragdrop
-    //= require controls
-
-New applications using this may also want to add
-
-    config.action_view.debug_rjs = true
-
-to their config/environments/development.rb.
-
+The tests haven't been updated and this may well eat your lunch and steal your beer.
