@@ -211,6 +211,11 @@ module ActionView
         # PrototypeHelper#update_page to wrap the generated JavaScript in a
         # <tt>\<script></tt> tag.
         module GeneratorMethods
+
+          unless const_defined? :JQUERY_VAR
+            JQUERY_VAR = 'jQuery'
+          end
+
           def to_s #:nodoc:
             (@lines * $/).tap do |javascript|
               if ActionView::Base.debug_rjs
